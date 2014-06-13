@@ -89,28 +89,41 @@ split_facebook_text = facebook_text.split()
 # with open('jsontest.json', 'w') as f:
 #   json.dump(dictionary, f)
 
-with open('jsontest.json', 'r') as f:
+with open('dictionary.json', 'r') as f:
   dictionary = json.load(f)
-  print dictionary['nobel prize']
+  
 
 # map facebook words to parts of speech
-prev = ''
-fb_POS = {}
-for word in split_facebook_text:
-  word = word.lower()
-  word = word.translate(None, '"')
-  if word == 'xyx':
-  	prev = ''
-  elif word not in fb_POS:
-    POS = mapPOS(word)
-    fb_POS[POS] = word
+# prev = ''
+# fb_POS = {}
+# for word in split_facebook_text:
+#   word = word.lower()
+#   word = word.translate(None, '"')
+#   if word == 'xyx':
+#   	prev = ''
+#   elif word not in fb_POS:
+#     POS = mapPOS(word)
+#     if POS != None and POS not in fb_POS.keys():
+#       fb_POS[POS] = [word]
+#       count = count + 1
+#       print word + ' '+ str(count)
+#     elif POS != None:
+#       fb_POS[POS].append(word)
+
+
+# with open('facebook_dictionary.json', 'w') as fb:
+#   json.dump(fb_POS,fb)   
+
+with open('facebook_dictionary.json', 'r') as fb:
+  fb_POS = json.load(fb) 
+
 
 fb_word_array = ''   
 fb_words = open('facebookwords.txt', 'r').read().split()
 for fb_word in fb_words:
   if mapPOS(fb_word) == None:
     fb_word_array = fb_word + ' '
-    appendfile('whatarethesewords.txt', str(fb_word_array))
+    # appendfile('whatarethesewords.txt', str(fb_word_array))
 
 
 
