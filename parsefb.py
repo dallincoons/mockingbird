@@ -3,6 +3,7 @@ import requests
 import random
 import re
 import fbconsole as F
+import json
 
 def findPOS(word):
   if word in dictionary:
@@ -60,7 +61,7 @@ def appendfile(filename, data):
   f.write(data)
 
 def main():
-  # talk('')
+  talk('')
 
 
 
@@ -71,22 +72,26 @@ facebook_text = open('facebookwords.txt', 'r').read()
 split_facebook_text = facebook_text.split()
 
 #create dictionary
-raw_dict_text = open('dictionary.txt', 'r').read()
-dict_list = raw_dict_text.split(',')
-count = 1
-index = ''
-dictionary = {}
-for word in dict_list:
-  if count == 1:
-    dictionary[word] = ''
-    index = word
-    count = 2
-  elif count == 2:
-  	dictionary[index] = word
-  	count = 1
+# raw_dict_text = open('dictionary.txt', 'r').read()
+# dict_list = raw_dict_text.split(',')
+# count = 1
+# index = ''
+# dictionary = {}
+# for word in dict_list:
+#   if count == 1:
+#     dictionary[word] = ''
+#     index = word
+#     count = 2
+#   elif count == 2:
+#   	dictionary[index] = word
+#   	count = 1
 
+# with open('jsontest.json', 'w') as f:
+#   json.dump(dictionary, f)
 
-
+with open('jsontest.json', 'r') as f:
+  dictionary = json.load(f)
+  print dictionary['nobel prize']
 
 # map facebook words to parts of speech
 prev = ''
